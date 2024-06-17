@@ -6,4 +6,10 @@
 		Опубликован {{ post.publish }} by {{ post.author }}
 	</p>
 	{{ post.body|linebreaks }}
+	<p>
+		<a href="{% url "blog:post_share" post.id %}">
+		Отправить данный пост по e-mail
+		</a>
+	</p>
+
 {% endblock %}

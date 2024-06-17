@@ -111,3 +111,27 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# EMAIL_SETTINGS###################################################
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+# YANDEX
+# EMAIL_HOST = "smtp.yandex.ru"
+# EMAIL_HOST_USER = "smaspb17@yandex.ru"
+# EMAIL_HOST_PASSWORD = "dewlxsanzpdtzamu"
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "smaspb17@gmail.com"
+EMAIL_HOST_PASSWORD = "swlk pmty nvtz slid"
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True
+
+# доп параметры, значения могут быть другими, главное чтобы были
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
+
+##########################################################################
