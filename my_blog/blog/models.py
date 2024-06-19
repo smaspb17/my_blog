@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models import TextChoices
 from django.urls import reverse
 from django.utils import timezone
+from taggit.managers import TaggableManager
 
 
 class PublishedManager(models.Manager):
@@ -27,9 +28,10 @@ class Post(models.Model):
     status = models.CharField(
         max_length=2, choices=Status.choices, default=Status.DRAFT
     )
+    tags = TaggableManager()
 
-    objects = models.Manager() # менеджер, применяемый по умолчанию
-    published = PublishedManager() # конкретно-прикладной менеджер
+    objects = models.Manager() # встроенный менеджер, применяемый по умолчанию
+    published = PublishedManager() # кастомный менеджер
 
     class Meta:
         ordering = ["-publish"]
