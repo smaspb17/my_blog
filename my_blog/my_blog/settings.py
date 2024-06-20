@@ -19,6 +19,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "blog.apps.BlogConfig",
     "taggit",
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -107,3 +109,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 ##########################################################################
+
+
+# Карта сайта
+SITE_ID = 1
