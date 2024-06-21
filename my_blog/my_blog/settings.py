@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "taggit",
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'django.contrib.postgres',  # поиск по нескольким полям (SearchVector)
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,10 @@ WSGI_APPLICATION = "my_blog.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'blog',
+        "USER": 'blog',
+        "PASSWORD": 'Allpip989',
     }
 }
 
@@ -109,7 +112,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 ##########################################################################
-
 
 # Карта сайта
 SITE_ID = 1
