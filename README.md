@@ -53,13 +53,10 @@ psql -U postgres
 CREATE USER blog WITH PASSWORD 'your_password';
 CREATE DATABASE blog OWNER blog ENCODING 'UTF8';
 ```
-8. Открой файл конфигурации settings.py и внеси строки для базы данных:
-```
-"ENGINE": "django.db.backends.postgresql",
-"NAME": 'blog',
-"USER": 'blog',
-"PASSWORD": 'your_password',
-```
+8. Создай файл .env (в контейнере проекта), а также приложение в любом 
+   smtp-сервисе, например в Google (https://myaccount.google.com), и 
+   заполни им переменными, указанными в файле example.env
+
 9. Перейди в пакет конфигурации и выполни миграции, там находится файл 
    manage.py:
 ```
@@ -67,27 +64,16 @@ cd my_blog/
 python manage.py makemigrations
 python manage.py migrate
 ```
-10. Создай приложение в google-аккаунте и заполни настройки для 
-    отправки электронных писем по smtp-протоколу:
-```
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "your_host_user"
-EMAIL_HOST_PASSWORD = "your_host_paswword"
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
-EMAIL_ADMIN = EMAIL_HOST_USER
-```
-11. Создай суперпользователя:
+
+10. Создай суперпользователя:
 ```
 python manage.py createsuperuser
 ```
-12. Запусти проект на локальном сервере:
+11. Запусти проект на локальном сервере:
 ```
 python manage.py runserver
 ```
-13. Перейди по ссылке в браузере:
+12. Перейди по ссылке в браузере:
 ```
 http://127.0.0.1:8000/blog/
 ``` 

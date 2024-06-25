@@ -1,13 +1,17 @@
+import os
 
 from pathlib import Path
 
+from django.core.management.utils import get_random_secret_key
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = "django-insecure-n86n)1vullf7r+pybtl#8g1ozrv#oygz0#^#=r#ce+n0&2g-(_"
-
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -57,9 +61,9 @@ WSGI_APPLICATION = "my_blog.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'blog',
-        "USER": 'blog',
-        "PASSWORD": 'Allpip989',
+        "NAME": os.getenv('DB_NAME', 'postgres'),
+        "USER": os.getenv('DB_USER', 'postgres'),
+        "PASSWORD": os.getenv('DB_PASSWORD', 'your_password'),
     }
 }
 
@@ -96,21 +100,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # YANDEX
-# EMAIL_HOST = "smtp.yandex.ru"
-# EMAIL_HOST_USER = "smaspb17@yandex.ru"
-# EMAIL_HOST_PASSWORD = "dewlxsanzpdtzaёu"
+# EMAIL_HOST = os.getenv('EMAIL_HOST')
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "smaspb17@gmail.com"
-EMAIL_HOST_PASSWORD = "swlk pёty nvtz slid"
-EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = True
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+# EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
 
 # доп параметры, значения могут быть другими, главное чтобы были
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
-EMAIL_ADMIN = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = os.getenv('SERVER_EMAIL')
+EMAIL_ADMIN = os.getenv('EMAIL_ADMIN')
 ##########################################################################
 
 # Карта сайта
